@@ -6,8 +6,12 @@
 #include <SFML/System.hpp>
 #include <SFML/Network.hpp>
 
+#include <box2d/box2d.h>
+
 #include <iostream>
 #include <stack>
+
+#include "Conversion.h"
 
 class State
 {
@@ -15,6 +19,8 @@ private:
 protected:
 	std::stack<State*>* states;
 	sf::RenderWindow* window;
+	int score;
+	sf::Font font;
 
 	//State Manager Functions
 	void returnState() {
@@ -29,6 +35,7 @@ public:
 	State(sf::RenderWindow* window, std::stack<State*>* states) {
 		this->window = window;
 		this->states = states;
+		score = 0;
 	}
 
 	virtual ~State() {};

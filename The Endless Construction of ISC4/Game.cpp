@@ -7,6 +7,7 @@ void Game::initWindow()
 	video_mode.height = window_height;
 	video_mode.width = window_width;
 	window = new sf::RenderWindow(video_mode, "TECOISC 4", sf::Style::Default);
+	window->setFramerateLimit(60);
 }
 
 void Game::initVariables()
@@ -43,7 +44,7 @@ void Game::pollEvents()
 		{
 		case sf::Event::Closed:
 			window->close();
-			running = false;
+			running = false; //Comment Out for Debugging
 			break;
 		}
 
@@ -57,6 +58,10 @@ void Game::update()
 {
 	if (!states.empty()) {
 		states.top()->update();
+	}
+	else {
+		window->close();
+		running = false;
 	}
 }
 
